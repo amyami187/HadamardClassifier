@@ -21,6 +21,8 @@ U7b = U7b()
 U8f = U8f()
 U8b = U8b()
 
+dev_qubit = qml.device('default.qubit', wires=8)
+
 @qml.qnode(dev_qubit)
 def circuit(phi0, Xdata=None, Y=None):
     X1 = Xdata[0:, 0]
