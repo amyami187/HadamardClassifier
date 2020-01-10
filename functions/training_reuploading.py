@@ -1,3 +1,7 @@
+from pennylane import numpy as np
+import pennylane as qml
+from sklearn.preprocessing import normalize
+
 def variational_circ(var, Xdata, Y):
     phi0 = var[0]
     x_weights = var[1]
