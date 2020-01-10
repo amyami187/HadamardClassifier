@@ -1,7 +1,7 @@
 import pennylane as qml
 from _featuremap import featuremap
 from pennylane import numpy as np
-from functions import *
+from .functions import *
 
 # can't pass functions to QubitUnitary 
 U1f = U1f()
