@@ -1,7 +1,8 @@
 import pennylane as qml
-from _featuremap import featuremap
+#from _featuremap import featuremap
 from pennylane import numpy as np
-from .functions import *
+from functions.circfns import *
+from featuremaps.FM1 import *
 
 # can't pass functions to QubitUnitary 
 U1f = U1f()
@@ -24,9 +25,9 @@ U8b = U8b()
 dev_qubit = qml.device('default.qubit', wires=8)
 
 @qml.qnode(dev_qubit)
-def circuit(phi0, Xdata=None, Y=None):
-    X1 = Xdata[0:, 0]
-    X2 = Xdata[0:, 1]
+def circuit(phi0, X=None, Y=None):
+    X1 = X[0:, 0]
+    X2 = X[0:, 1]
     for i in range(4):
         qml.Hadamard(wires=i)
 
@@ -64,4 +65,4 @@ def circuit(phi0, Xdata=None, Y=None):
 
     qml.Hadamard(wires=0)
 
-    return qml.expval.Hermitian(np.array([[1, 0], [0, 0]]), wires=0), qml.expval.PauliZ(wires=5)
+    return qml.expval(qml.Hermitian(np.array([[1, 0], [0, 0]]), wires=0)), qml.expval(qml.PauliZ(wires=5))
